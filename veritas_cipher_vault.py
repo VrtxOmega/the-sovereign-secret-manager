@@ -22,7 +22,7 @@ from PySide6.QtWidgets import (
     QStackedWidget, QFrame, QMessageBox, QDialog
 )
 from PySide6.QtCore import Qt, Signal, QThread
-from PySide6.QtGui import QColor, QFont, QPalette
+from PySide6.QtGui import QColor, QFont, QPalette, QIcon
 
 # Cryptography
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
@@ -231,7 +231,8 @@ class SovereignButton(QPushButton):
 class SecretManager(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("VERITAS Ω CIPHER VAULT")
+        self.setWindowTitle("SOVEREIGN SECRET MANAGER")
+        self.setWindowIcon(QIcon(r"C:\Users\rlope\.gemini\antigravity\brain\9e6c937f-6455-4fe0-97ec-206c7756bbd8\sovereign_vault_icon_1777237201233.png"))
         self.setMinimumSize(1000, 700)
         self.engine = VaultEngine()
         self.hmac_list = []
@@ -246,7 +247,7 @@ class SecretManager(QMainWindow):
         # SETUP
         setup_page = QWidget()
         l = QVBoxLayout(setup_page); l.setAlignment(Qt.AlignCenter); l.setSpacing(20)
-        l.addWidget(QLabel("Ω INITIALIZE SOVEREIGN VAULT"), 0, Qt.AlignCenter)
+        l.addWidget(QLabel("Ω SOVEREIGN SECRET MANAGER: INITIALIZATION"), 0, Qt.AlignCenter)
         self.setup_pw = QLineEdit(); self.setup_pw.setEchoMode(QLineEdit.Password); self.setup_pw.setPlaceholderText("PASSPHRASE"); self.setup_pw.setFixedWidth(400)
         self.setup_pw_cf = QLineEdit(); self.setup_pw_cf.setEchoMode(QLineEdit.Password); self.setup_pw_cf.setPlaceholderText("CONFIRM"); self.setup_pw_cf.setFixedWidth(400)
         self.bind_btn = SovereignButton("BIND YUBIKEY", False); self.bind_btn.setFixedWidth(400)
@@ -259,7 +260,7 @@ class SecretManager(QMainWindow):
         # UNLOCK
         unlock_page = QWidget()
         lu = QVBoxLayout(unlock_page); lu.setAlignment(Qt.AlignCenter); lu.setSpacing(20)
-        lu.addWidget(QLabel("VERITAS Ω VAULT"), 0, Qt.AlignCenter)
+        lu.addWidget(QLabel("SOVEREIGN SECRET MANAGER"), 0, Qt.AlignCenter)
         self.unlock_pw = QLineEdit(); self.unlock_pw.setEchoMode(QLineEdit.Password); self.unlock_pw.setPlaceholderText("MASTER PASSPHRASE"); self.unlock_pw.setFixedWidth(400)
         self.unlock_btn = SovereignButton("UNLOCK VAULT"); self.unlock_btn.setFixedWidth(400)
         self.unlock_btn.clicked.connect(self.on_unlock_clicked)
