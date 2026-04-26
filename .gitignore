@@ -1,0 +1,13 @@
+# Sovereign Vault Protection
+config.json
+Vault_Sovereign/
+vault_sovereign/
+*.enc
+*.heapsnapshot
+__pycache__/
+*.pyc
+
+# Local Backups (Excluded from Repo)
+backup_secrets.py
+secret_manager_backup/
+SOVEREIGN_MANUAL.md
