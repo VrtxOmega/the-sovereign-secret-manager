@@ -232,7 +232,7 @@ class SecretManager(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("SOVEREIGN SECRET MANAGER")
-        self.setWindowIcon(QIcon(r"C:\Users\rlope\.gemini\antigravity\brain\9e6c937f-6455-4fe0-97ec-206c7756bbd8\sovereign_vault_icon_1777237201233.png"))
+        self.setWindowIcon(QIcon(r"C:\Veritas_Lab\sovereign_icon.ico"))
         self.setMinimumSize(1000, 700)
         self.engine = VaultEngine()
         self.hmac_list = []
