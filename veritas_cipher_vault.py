@@ -17,7 +17,7 @@ from typing import Optional, List
 
 # GUI
 from PySide6.QtWidgets import (
-    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout,
     QLabel, QPushButton, QLineEdit, QTextEdit, QListWidget, 
     QStackedWidget, QFrame, QMessageBox, QDialog
 )
@@ -278,11 +278,28 @@ class SecretManager(QMainWindow):
         ls.addWidget(QLabel("Ω VOLUMES")); ls.addWidget(self.list); ls.addWidget(self.add_btn); ls.addWidget(self.del_btn); ls.addWidget(self.ingest_btn)
         
         editor_pane = QWidget(); le = QVBoxLayout(editor_pane)
-        self.editor = QTextEdit(); self.save_btn = SovereignButton("SAVE SECURELY")
+        
+        # --- WATERMARK STACK ---
+        watermark_stack = QWidget()
+        stack_layout = QGridLayout(watermark_stack)
+        stack_layout.setContentsMargins(0,0,0,0)
+        
+        self.watermark = QLabel("Ω")
+        self.watermark.setAlignment(Qt.AlignCenter)
+        self.watermark.setStyleSheet(f"color: rgba(201, 168, 76, 40); font-family: 'Georgia'; font-size: 350px;")
+        
+        self.editor = QTextEdit()
+        self.editor.setStyleSheet("background: transparent; border: none; font-size: 14px; color: #EEE;")
+        
+        stack_layout.addWidget(self.watermark, 0, 0)
+        stack_layout.addWidget(self.editor, 0, 0)
+        # -----------------------
+
+        self.save_btn = SovereignButton("SAVE SECURELY")
         self.save_btn.clicked.connect(self.on_save)
         self.add_btn.clicked.connect(self.on_new)
         self.del_btn.clicked.connect(self.on_del)
-        le.addWidget(self.editor); le.addWidget(self.save_btn)
+        le.addWidget(watermark_stack); le.addWidget(self.save_btn)
         
         lv.addWidget(sidebar); lv.addWidget(editor_pane)
         self.stack.addWidget(vault_page)
