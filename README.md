@@ -27,3 +27,34 @@ This repository follows the **Zero Leakage Protocol**. Encrypted volumes, salts,
 
 ---
 *A VERITAS Ω Production*
+
+## Architecture
+
+The Sovereign Secret Manager uses a multi-anchor hardware redundancy model:
+
+- **Primary Vault** — Local encrypted SQLite database
+- **Hardware Anchors** — YubiKey + multiple USB backup drives
+- **Multi-Factor Recovery** — M-of-N shard system prevents single-point failure
+- **Offline Operation** — No network dependency, fully air-gapped capable
+
+## Usage
+
+```bash
+# Clone and install
+git clone https://github.com/VrtxOmega/the-sovereign-secret-manager.git
+cd the-sovereign-secret-manager
+pip install -r requirements.txt
+
+# Initialize a new vault
+python vault.py init --anchor /media/usb-backup
+
+# Store a secret
+python vault.py store --name "api-key" --value "sk-..."
+
+# Retrieve a secret
+python vault.py retrieve --name "api-key"
+
+# List all stored secrets
+python vault.py list
+```
+
